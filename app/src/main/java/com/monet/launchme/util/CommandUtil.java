@@ -18,7 +18,7 @@ import java.util.Locale;
 
 public class CommandUtil {
     public static final String TAG = "launchme-" + CommandUtil.class.getSimpleName();
-    public static final String COMMAND_SH = "sh";
+    public static final String COMMAND_SU = "sh";
     public static final String COMMAND_LINE_END = "\n";
     public static final String COMMAND_EXIT = "exit\n";
     private static final boolean IS_DEBUG = MainActivity.IS_DEBUG;
@@ -52,7 +52,7 @@ public class CommandUtil {
 
         DataOutputStream dos = null;
         try {
-            process = Runtime.getRuntime().exec(COMMAND_SH);
+            process = Runtime.getRuntime().exec(COMMAND_SU);
             dos = new DataOutputStream(process.getOutputStream());
             for (String command : commands) {
                 if (command == null) {
@@ -79,7 +79,7 @@ public class CommandUtil {
                 debug("Command line item: " + lineStr);
             }
             while ((lineStr = errorReader.readLine()) != null) {
-                errorMsg.append(lineStr);
+                errorMsg.append(lineStr + COMMAND_LINE_END);
             }
 
         } catch (IOException e) {
@@ -106,7 +106,7 @@ public class CommandUtil {
             }
         }
         debug(String.format(Locale.CHINA,
-                "Execute command finished, errorMsg: %s, and status: %d",
+                "Execute all commands finished, \nerrorMsg: %s, \nand status: %d",
                 errorMsg, status));
         return results;
     }
