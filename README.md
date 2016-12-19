@@ -4,7 +4,7 @@
 # USUAGE
 ------------------
 
-Update: 2016-12-18
+Update: 2016-12-19
 
  **Settings** in `/data/data/com.monet.launchme/files/launchme.conf`
 

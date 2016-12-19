@@ -3,6 +3,8 @@ package com.monet.launchme.util;
 import android.content.Context;
 import android.util.Log;
 
+import com.monet.launchme.activity.MainActivity;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
@@ -16,7 +18,17 @@ import java.io.OutputStreamWriter;
  */
 
 public class FilesUtil {
-    //文件存放在 /data/data/<package name>/files/ 下，需要root权限才能查看
+    public static final String TAG = "launchme-" + FilesUtil.class.getSimpleName();
+    private static final boolean IS_DEBUG = MainActivity.IS_DEBUG;
+
+    /**
+     * 文件存放在 /data/data/<package name>/files/ 下，需要root权限才能查看
+     *
+     * @param context
+     * @param fileName
+     * @param data
+     * @return
+     */
     public static void save(Context context, String fileName, String data) {
         FileOutputStream out = null;
         BufferedWriter writer = null;
@@ -25,7 +37,7 @@ public class FilesUtil {
             out = context.openFileOutput(fileName, Context.MODE_PRIVATE);
             writer = new BufferedWriter(new OutputStreamWriter(out));
             writer.write(data);
-            Log.e("file", "Write configure file succeed.");
+            debug("Write configure file succeed.");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -39,7 +51,13 @@ public class FilesUtil {
         }
     }
 
-    //文件存放在 /data/data/<package name>/ 下，需要root权限才能查看
+    /**
+     * 文件存放在 /data/data/<package name>/files/ 下，需要root权限才能查看
+     *
+     * @param context
+     * @param fileName
+     * @return String
+     */
     public static String load(Context context, String fileName) {
         FileInputStream in = null;
         BufferedReader reader = null;
@@ -63,8 +81,19 @@ public class FilesUtil {
                 }
             }
         }
-        Log.e("file", "Read configure file succeed.");
+        debug("Read configure file succeed.");
         return content.toString();
+    }
+
+    /**
+     * 打印debug信息
+     *
+     * @param message
+     */
+    private static void debug(String message) {
+        if (IS_DEBUG) {
+            Log.d(TAG, message);
+        }
     }
 
 }
