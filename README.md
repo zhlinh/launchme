@@ -4,9 +4,9 @@
 # USUAGE
 ------------------
 
-Update: 2016-12-19
+Update: 2016-12-20
 
- **Settings** in `/data/data/com.monet.launchme/files/launchme.conf`
+**Settings** in `/data/data/com.monet.launchme/files/launchme.conf`
 
 Every line is a command which Android devices will start up with.
 
@@ -14,7 +14,7 @@ Every line is a command which Android devices will start up with.
 
 At launchme.conf:
 ```
-/data/system/launchme_bin
+/data/src/main
 ```
 
 > Initiate App

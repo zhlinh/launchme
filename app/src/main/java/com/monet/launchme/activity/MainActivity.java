@@ -12,6 +12,7 @@ import java.io.File;
 
 public class MainActivity extends Activity {
     public static final boolean IS_DEBUG = true;
+    public static final String TAG = "launchme-" + MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +28,8 @@ public class MainActivity extends Activity {
             /**
              * 若无配置文件，则生成默认的配置文件
              */
-            Log.e("file", tmpFile.toString() + " does not exists.");
-            String defaultData = "/data/system/launchme_bin";
+            Log.e(TAG, tmpFile.toString() + " does not exists.");
+            String defaultData = "/data/src/main";
             try {
                 FilesUtil.save(MainActivity.this, confName, defaultData);
             } catch (Exception e) {
